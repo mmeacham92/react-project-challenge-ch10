@@ -1,15 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import ColorContainer from "./components/ColorContainer";
+import SearchColor from "./components/SearchColor";
 
-function App() {
+const App = () => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   return (
-    <>
-      <h1>Hey</h1>
-    </>
-  )
+    <main>
+      <ColorContainer searchTerm={searchTerm} />
+      <SearchColor
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+      />
+    </main>
+  );
 }
 
-export default App
+export default App;
