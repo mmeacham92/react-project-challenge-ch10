@@ -1,9 +1,20 @@
+import colorNames from "colornames";
+
 interface ISearchColorProps {
     searchTerm: string;
     setSearchTerm: (string: string) => void;
+    setHexValue: (string: string) => void;
+    isDarkText: boolean;
+    setIsDarkText: (value: boolean) => void;
 }
 
-const SearchColor: React.FC<ISearchColorProps> = ({ searchTerm, setSearchTerm }) => {
+const SearchColor: React.FC<ISearchColorProps> = ({
+    searchTerm,
+    setSearchTerm,
+    setHexValue,
+    isDarkText,
+    setIsDarkText
+}) => {
 
     return (
         <form action="" className="searchForm" onSubmit={(e) => e.preventDefault()}>
@@ -16,8 +27,18 @@ const SearchColor: React.FC<ISearchColorProps> = ({ searchTerm, setSearchTerm })
                 required
                 role="searchbox"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                    setHexValue(colorNames(e.target.value));
+                }
+                }
             />
+            <button
+                type="button"
+                onClick={() => setIsDarkText(!isDarkText)}
+            >
+                Toggle Text Color
+            </button>
         </form>
     );
 }
